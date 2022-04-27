@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+import com.rock.wanandroidcompose.buildsrc.ProjectConfig
+import com.rock.wanandroidcompose.buildsrc.Libs
+
+android {
+    compileSdk ProjectConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdkVersion
+        targetSdk ProjectConfig.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = ProjectConfig.jvmTarget
+    }
+    buildFeatures {
+        compose ProjectConfig.compose
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
+    }
+}
+dependencies {
+
+    implementation Libs.AndroidX.Core.ktx
+    implementation Libs.AndroidX.Compose.ui
+    implementation Libs.AndroidX.Compose.material
+    implementation Libs.AndroidX.Navigation.navigationCompose
+    implementation Libs.AndroidX.Paging.paging
+
+    //okhttp
+    implementation Libs.Okhttp.okhttp
+    //retrofit
+    implementation Libs.Retrofit.retrofit
+    implementation Libs.Retrofit.converterGson
+    implementation Libs.Retrofit.coroutinesAdapter
+
+
+    testImplementation Libs.Junit.junit
+    androidTestImplementation Libs.AndroidX.Test.extJunit
+    androidTestImplementation Libs.AndroidX.Test.espresso
+}
