@@ -1,0 +1,118 @@
+package com.rock.data.entity
+
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+
+@Entity
+data class Article(
+    @PrimaryKey
+    val id: Int,
+    val apkLink: String,
+    val audit: Int,
+    val author: String,
+    val canEdit: Boolean,
+    val chapterId: Int,
+    val chapterName: String,
+    val collect: Boolean,
+    val courseId: Int,
+    val desc: String,
+    val descMd: String,
+    val envelopePic: String,
+    val fresh: Boolean,
+    val host: String,
+    val link: String,
+    val niceDate: String,
+    val niceShareDate: String,
+    val origin: String,
+    val prefix: String,
+    val projectLink: String,
+    val publishTime: Long,
+    val realSuperChapterId: Int,
+    val selfVisible: Int,
+    val shareDate: Long,
+    val shareUser: String,
+    val superChapterId: Int,
+    val superChapterName: String,
+    @Ignore val tags: List<Tag>?,
+    val title: String,
+    val type: Int,
+    val userId: Int,
+    val visible: Int,
+    val zan: Int
+) {
+    constructor(
+        id: Int,
+        apkLink: String,
+        audit: Int,
+        author: String,
+        canEdit: Boolean,
+        chapterId: Int,
+        chapterName: String,
+        collect: Boolean,
+        courseId: Int,
+        desc: String,
+        descMd: String,
+        envelopePic: String,
+        fresh: Boolean,
+        host: String,
+        link: String,
+        niceDate: String,
+        niceShareDate: String,
+        origin: String,
+        prefix: String,
+        projectLink: String,
+        publishTime: Long,
+        realSuperChapterId: Int,
+        selfVisible: Int,
+        shareDate: Long,
+        shareUser: String,
+        superChapterId: Int,
+        superChapterName: String,
+        title: String,
+        type: Int,
+        userId: Int,
+        visible: Int,
+        zan: Int
+    ) : this(
+        id,
+        apkLink,
+        audit,
+        author,
+        canEdit,
+        chapterId,
+        chapterName,
+        collect,
+        courseId,
+        desc,
+        descMd,
+        envelopePic,
+        fresh,
+        host,
+        link,
+        niceDate,
+        niceShareDate,
+        origin,
+        prefix,
+        projectLink,
+        publishTime,
+        realSuperChapterId,
+        selfVisible,
+        shareDate,
+        shareUser,
+        superChapterId,
+        superChapterName,
+        tags = emptyList<Tag>(),
+        title,
+        type,
+        userId,
+        visible,
+        zan
+    )
+}
+
+
+data class Tag(
+    val name: String,
+    val url: String
+)

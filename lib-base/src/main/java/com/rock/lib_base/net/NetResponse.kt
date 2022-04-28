@@ -8,9 +8,9 @@ object ResponseCode {
 
 data class NetResponse<T>(val data:T,val errorCode:Int,val errorMsg:String)
 
-suspend fun <T> NetResponse<T>.handleResponse(handler:suspend (T)->Unit){
+suspend fun <T,R> NetResponse<T>.handleResponse(handler:suspend (T)->R):R{
     if (errorCode == ResponseCode.OK){
-        handler(this.data)
+      return handler(this.data)
     }else{
         throw NetRequestException(errorCode,errorMsg)
     }

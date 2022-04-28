@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+import com.rock.wanandroidcompose.buildsrc.ProjectConfig
+import com.rock.wanandroidcompose.buildsrc.Libs
+
+android {
+    compileSdk ProjectConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdkVersion
+        targetSdk ProjectConfig.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        //指定room.schemaLocation生成的文件路径
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = ProjectConfig.jvmTarget
+    }
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion ProjectConfig.kotlinCompilerExtensionVersion
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':lib-base')
+
+    implementation Libs.AndroidX.Core.ktx
+    implementation Libs.Kotlin.kotlinxCoroutinesCore
+
+    implementation Libs.Retrofit.retrofit
+
+    //room
+    implementation Libs.AndroidX.Room.runtime
+    implementation Libs.AndroidX.Room.ktx
+    annotationProcessor Libs.AndroidX.Room.compiler
+    kapt Libs.AndroidX.Room.compiler
+    //page
+    implementation Libs.AndroidX.Paging.paging
+    implementation Libs.AndroidX.Paging.pagingRoom
+    //DataStore
+    implementation Libs.AndroidX.Datastore.dataStoreP
+    //hilt
+    implementation Libs.Hilt.hiltAndroid
+    kapt Libs.Hilt.hiltAndroidCompiler
+
+    testImplementation Libs.Junit.junit
+    androidTestImplementation Libs.AndroidX.Test.extJunit
+    androidTestImplementation Libs.AndroidX.Test.espresso
+}

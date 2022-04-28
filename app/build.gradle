@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 
 }
 //id 'dagger.hilt.android.plugin'
@@ -54,6 +55,7 @@ android {
 dependencies {
 
     implementation project(path: ':lib-base')
+    implementation project(path: ':data')
 
     implementation Libs.AndroidX.Core.ktx
     implementation Libs.AndroidX.Compose.ui
@@ -61,6 +63,15 @@ dependencies {
     implementation Libs.AndroidX.Compose.uiTooling
     implementation Libs.AndroidX.LifeCycle.runtimeKtx
     implementation Libs.AndroidX.Activity.compose
+    implementation Libs.AndroidX.Paging.pagingCompose
+
+
+
+    implementation Libs.Hilt.hiltAndroid
+    kapt Libs.Hilt.hiltAndroidCompiler
+
+    implementation Libs.Kotlin.kotlinxCoroutinesCore
+
 
 
     testImplementation Libs.Junit.junit

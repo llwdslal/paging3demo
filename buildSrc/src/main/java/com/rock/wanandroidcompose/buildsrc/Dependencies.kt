@@ -3,6 +3,7 @@ package com.rock.wanandroidcompose.buildsrc
 
 object Version {
     const val compose = "1.1.0"
+    const val hiltPlugin = "2.41"
 }
 
 object Libs {
@@ -58,6 +59,7 @@ object Libs {
         object Paging{
             private const val version = "3.1.1"
             const val paging = "androidx.paging:paging-runtime:$version"
+            const val pagingRoom = "androidx.room:room-paging:2.5.0-alpha01"
             const val pagingCompose = "androidx.paging:paging-compose:1.0.0-alpha14"
         }
 
@@ -92,8 +94,7 @@ object Libs {
         private const val version = "2.9.0"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
         const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
-        const val coroutinesAdapter =
-            "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+        const val coroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     }
 
 
