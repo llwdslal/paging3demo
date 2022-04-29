@@ -52,7 +52,7 @@ dependencies {
     implementation project(path: ':lib-base')
 
     implementation Libs.AndroidX.Core.ktx
-    implementation Libs.Kotlin.kotlinxCoroutinesCore
+    implementation Libs.Kotlin.Coroutine.Core
 
     implementation Libs.Retrofit.retrofit
 

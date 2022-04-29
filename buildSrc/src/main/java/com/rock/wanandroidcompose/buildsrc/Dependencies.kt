@@ -70,6 +70,11 @@ object Libs {
         }
     }
 
+    object Accompanist {
+        private const val version = "0.23.1"
+        const val swipeRefresh = "com.google.accompanist:accompanist-swiperefresh:$version"
+    }
+
     object Hilt {
         private const val version = "2.41"
 
@@ -83,7 +88,11 @@ object Libs {
     }
 
     object Kotlin{
-        const val kotlinxCoroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
+        object Coroutine{
+            private const val version = "1.6.1"
+            const val Core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+            const val Android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+        }
     }
 
     object Okhttp {

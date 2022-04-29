@@ -64,13 +64,14 @@ dependencies {
     implementation Libs.AndroidX.LifeCycle.runtimeKtx
     implementation Libs.AndroidX.Activity.compose
     implementation Libs.AndroidX.Paging.pagingCompose
+    implementation Libs.Accompanist.swipeRefresh
 
 
 
     implementation Libs.Hilt.hiltAndroid
     kapt Libs.Hilt.hiltAndroidCompiler
 
-    implementation Libs.Kotlin.kotlinxCoroutinesCore
+    implementation Libs.Kotlin.Coroutine.Core
 
 
 

@@ -15,7 +15,6 @@ class ArticlePagingVM @Inject constructor(
     private val articleRepository: ArticleRepository
 ):ViewModel(){
     val articleFlow = articleRepository.articlePagerFlow.cachedIn(viewModelScope)
-
-
+    val articleRemoteMediatorFlow = articleRepository.articleRemoteMediatorPagerFlow.cachedIn(viewModelScope)
 
 }

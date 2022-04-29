@@ -12,5 +12,9 @@ import dagger.hilt.android.scopes.ViewModelScoped
 class PagingModule {
     @Provides
     @ViewModelScoped
-    fun providePagingConfig():PagingConfig = PagingConfig(pageSize = 20)
+    fun providePagingConfig():PagingConfig = PagingConfig(
+        pageSize = 20,
+        initialLoadSize = 20,
+        enablePlaceholders = false
+    )
 }

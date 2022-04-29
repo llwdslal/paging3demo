@@ -38,6 +38,7 @@ object NetServiceModule {
     @Singleton
     fun providerWanAndroidService(@DebugURL baseUrl:String):WanAndroidService = RetrofitClient.apply {
         init(baseUrl)
+        logEnable(false)
     }.createService(WanAndroidService::class.java)
 }
 

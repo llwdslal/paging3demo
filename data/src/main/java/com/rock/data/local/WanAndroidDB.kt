@@ -9,31 +9,35 @@ import androidx.room.RoomDatabase
 import com.rock.data.local.dao.BannerDao
 import com.rock.data.entity.Article
 import com.rock.data.entity.Banner
+import com.rock.data.entity.RemoteKeys
 import com.rock.data.local.dao.ArticleDao
+import com.rock.data.local.dao.RemoteKeysDao
 import com.rock.data.local.dao.TopicDao
 
 @Database(
     entities = [
         Article::class,
-        Banner::class
+        Banner::class,
+        RemoteKeys::class
     ],
     version = 1
 )
-abstract class WanAndroidDB : RoomDatabase(){
+abstract class WanAndroidDB : RoomDatabase() {
     abstract fun topicDao(): TopicDao
-    abstract fun bannerDao():BannerDao
-    abstract fun articleDao():ArticleDao
+    abstract fun bannerDao(): BannerDao
+    abstract fun articleDao(): ArticleDao
+    abstract fun remoteKeysDao():RemoteKeysDao
 
 
-    companion object{
-        private val instance:WanAndroidDB?= null
+    companion object {
+        private val instance: WanAndroidDB? = null
 
         @Synchronized
-        fun getDB(context:Context):WanAndroidDB{
+        fun getDB(context: Context): WanAndroidDB {
             return instance ?: buildDB(context)
         }
 
-        private fun buildDB(context:Context):WanAndroidDB{
+        private fun buildDB(context: Context): WanAndroidDB {
             val builder = Room.databaseBuilder(
                 context,
                 WanAndroidDB::class.java,

@@ -5,18 +5,21 @@ import android.text.Html
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.text.htmlEncode
 import androidx.lifecycle.ViewModel
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
@@ -34,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             Paging3demoTheme {
-                ArticlePagingList(flow = viewModel.articleFlow)
+                ArticlePagingList(flow = viewModel.articleRemoteMediatorFlow)
             }
         }
     }
@@ -44,13 +47,32 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ArticlePagingList(flow: Flow<PagingData<Article>>){
     val lazyPagingItem = flow.collectAsLazyPagingItems()
-    LazyColumn{
+    LazyColumn(contentPadding = PaddingValues(vertical = 80.dp)){
 
         items(lazyPagingItem){ article ->
-            article?.let {
+            if (article != null){
                 Text(modifier = Modifier.padding(12.dp),
-                    text = "${Html.fromHtml(it.title,Html.FROM_HTML_MODE_LEGACY)}")
+                    text = "${Html.fromHtml(article.title,Html.FROM_HTML_MODE_LEGACY)}")
+            }else{
+                Holder()
+            }
+        }
+
+        if (lazyPagingItem.loadState.append == LoadState.Loading) {
+            item {
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp)
+                ) {
+                    CircularProgressIndicator(Modifier.align(Alignment.Center))
+                }
             }
         }
     }
+}
+
+@Composable
+fun Holder(){
+    Text(modifier = Modifier.padding(12.dp), text = "")
 }
